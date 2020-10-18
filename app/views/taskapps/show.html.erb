@@ -1,0 +1,37 @@
+<h1>タスク詳細</h1>
+
+<div class="nav justify-content-end">
+    <%= link_to '一覧', taskapps_path, class: 'nav-link' %>
+</div>
+
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th><%= Taskapp.human_attribute_name(:id) %></th>
+            <th><%= @task.id %></th>
+        </tr>
+        <tr>
+            <th><%= Taskapp.human_attribute_name(:name) %></th>
+            <th><%= @task.name %></th>
+        </tr>
+        <tr>
+            <th><%= Taskapp.human_attribute_name(:text) %></th>
+            <th><%= simple_format(h(@task.text), {}, sanitize: false, wrapper_tag: "div") %></th>
+        </tr>
+        <tr>
+            <th><%= Taskapp.human_attribute_name(:image) %></th>
+            <th><%= image_tag @task.image if @task.image.attached? %></th>
+        </tr>
+        <tr>
+            <th><%= Taskapp.human_attribute_name(:created_at) %></th>
+            <th><%= @task.created_at %></th>
+        </tr>
+        <tr>
+            <th><%= Taskapp.human_attribute_name(:updated_at) %></th>
+            <th><%= @task.updated_at %></th>
+        </tr>
+    </tbody>
+</table>
+
+<%= link_to '編集', edit_taskapp_path, class: 'btn btn-primary mr-3' %>
+<%= link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
